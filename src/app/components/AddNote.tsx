@@ -1,19 +1,30 @@
-import React, { useState } from "react";
-import { Box, Button, FormControl, FormLabel, IconButton, Input, VStack } from "@chakra-ui/react";
-import { FaArrowLeft } from "react-icons/fa";
-
-interface AddNoteProps {
-    onClose: () => void;
-  }
+import { Box, Button, FormControl, FormLabel, Input, VStack } from '@chakra-ui/react';
+import axios from 'axios';
+import { SyntheticEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export const AddNote= () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [isAddNoteVisible, setIsAddNoteVisible] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const router = useRouter();
+
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     // Here you can handle the submission of the form, for example, call an API to save the note
-    console.log({ title, body });
+    try {
+      const response = await axios.post('/api/notes', { title, body });
+      console.log(response.data);
+      // Clear the form
+      setTitle('');
+      setBody('');
+      router.refresh();
+      window.location.reload();
+      setIsAddNoteVisible(false);
+    } catch (error) {
+      console.error('Failed to add note');
+    }
   };
 
   return (
