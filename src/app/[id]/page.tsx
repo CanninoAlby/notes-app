@@ -68,6 +68,8 @@ export default function NoteDetail({ params }: { params: { id: string } }) {
         }
     }
 
+    const hoverBackground = useColorModeValue("gray.100", "gray.700");
+
     return (
         <div>
             {data ? (
@@ -88,7 +90,7 @@ export default function NoteDetail({ params }: { params: { id: string } }) {
                                 py={2}
                                 px={4}
                                 _hover={{
-                                background: useColorModeValue("gray.100", "gray.700")
+                                background: hoverBackground
                                 }}
                             />
                             </Tooltip>
@@ -108,7 +110,7 @@ export default function NoteDetail({ params }: { params: { id: string } }) {
                                     py={2}
                                     px={4}
                                     _hover={{
-                                    background: useColorModeValue("gray.100", "gray.700")
+                                    background: hoverBackground
                                     }}
                                 />
                                 </Tooltip>
