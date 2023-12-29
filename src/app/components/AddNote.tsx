@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, FormLabel, Input, VStack } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Input, Textarea, VStack } from '@chakra-ui/react';
 import axios from 'axios';
 import { SyntheticEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -32,11 +32,11 @@ export const AddNote= () => {
         <VStack spacing={4}>
         <FormControl id="note-title">
             <FormLabel>Note Title</FormLabel>
-            <Input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <Input type="text" value={title} onChange={(e) => setTitle(e.target.value)} fontWeight={"bold"}/>
         </FormControl>
         <FormControl id="note-body">
             <FormLabel>Note Body</FormLabel>
-            <Input type="text" value={body} onChange={(e) => setBody(e.target.value)} />
+            <Input as={Textarea} type="text" minH={"400px"} value={body} fontWeight={'light'} onChange={(e) => setBody(e.target.value)}/>
         </FormControl>
         <Button type="submit" colorScheme="pink">Add Note</Button>
         </VStack>

@@ -11,6 +11,7 @@ export const POST = async (req: Request) => {
     data: {
       title: body.title,
       body: body.body,
+      createdAt : body.createdAt,
     },
   });
   return NextResponse.json(result, { status: 201 });
